@@ -36,17 +36,18 @@
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
       "public/**/*",
-      "node_modules/**/*",
-      "assets/**/*"
+      "node_modules/**/*"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "build"
     },
     "linux": {
       "target": [
         "deb"
       ],
-      "category": "Development"
+      "category": "Development",
+      "artifactName": "${productName}-${version}.${ext}",
+      "icon": "build/icon.icns"
     },
     "mac": {
       "category": "public.app-category.financial",
@@ -54,7 +55,7 @@
         "target": "dmg",
         "arch": "universal"
       },
-      "icon": "./assets/icon.icns"
+      "icon": "build/icon.icns"
     },
     "dmg": {
       "title": "Firma Station",
@@ -62,18 +63,18 @@
         "width": 540,
         "height": 370
       },
-      "icon": "./assets/icon.icns"
+      "icon": "build/icon.icns"
     },
     "win": {
       "target": [
         "nsis"
       ],
-      "icon": "./assets/icon.ico"
+      "icon": "build/icon.ico"
     },
     "nsis": {
       "oneClick": false,
-      "installerIcon": "./assets/icon.ico",
-      "installerHeaderIcon": "./assets/icon.ico",
+      "installerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
       "createDesktopShortcut": true
     }
   }
