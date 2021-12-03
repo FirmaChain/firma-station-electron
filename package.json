@@ -36,19 +36,17 @@
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
       "public/**/*",
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "assets/**/*"
     ],
     "directories": {
       "buildResources": "assets"
     },
     "linux": {
       "target": [
-        "AppImage",
-        "deb",
-        "rpm"
+        "deb"
       ],
-      "category": "Development",
-      "icon": "./assets/firmachain.png"
+      "category": "Development"
     },
     "mac": {
       "category": "public.app-category.financial",
@@ -56,7 +54,7 @@
         "target": "dmg",
         "arch": "universal"
       },
-      "icon": "./assets/firmachain.ico"
+      "icon": "./assets/icon.icns"
     },
     "dmg": {
       "title": "Firma Station",
@@ -64,17 +62,18 @@
         "width": 540,
         "height": 370
       },
-      "icon": "./assets/firmachain.icns"
+      "icon": "./assets/icon.icns"
     },
     "win": {
       "target": [
         "nsis"
       ],
-      "icon": "./assets/firmachain.ico"
+      "icon": "./assets/icon.ico"
     },
     "nsis": {
       "oneClick": false,
-      "installerIcon": "./assets/firmachain.ico",
+      "installerIcon": "./assets/icon.ico",
+      "installerHeaderIcon": "./assets/icon.ico",
       "createDesktopShortcut": true
     }
   }
