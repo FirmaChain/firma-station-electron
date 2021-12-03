@@ -2,7 +2,7 @@
   "name": "firma-station-electron",
   "version": "1.0.0",
   "license": "ISC",
-  "homepage": "https://firmachain.org",
+  "homepage": "./",
   "description": "A desktop application to interact with Firma Chain.",
   "author": "Firma <developer@firmachain.org> (https://firmachain.org)",
   "main": "public/electron.js",
@@ -43,9 +43,12 @@
     },
     "linux": {
       "target": [
-        "AppImage"
+        "AppImage",
+        "deb",
+        "rpm"
       ],
-      "category": "Development"
+      "category": "Development",
+      "icon": "./assets/firmachain.png"
     },
     "mac": {
       "category": "public.app-category.financial",
