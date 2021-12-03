@@ -61,7 +61,7 @@
         "width": 540,
         "height": 370
       },
-      "icon": "./assets/firmachain.ico"
+      "icon": "./assets/firmachain.icns"
     },
     "win": {
       "target": [
