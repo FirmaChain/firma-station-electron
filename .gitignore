@@ -1,0 +1,10 @@
+/node_modules
+/build
+/dist
+/public/config.js
+.DS_Store
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock

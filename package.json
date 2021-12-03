@@ -1,0 +1,78 @@
+{
+  "name": "firma-station-electron",
+  "version": "1.0.0",
+  "license": "ISC",
+  "homepage": "https://firmachain.org",
+  "description": "A desktop application to interact with Firma Chain.",
+  "author": "Firma <developer@firmachain.org> (https://firmachain.org)",
+  "main": "public/electron.js",
+  "devDependencies": {
+    "electron": "^16.0.3",
+    "electron-builder": "^22.14.5"
+  },
+  "dependencies": {
+    "electron-debug": "^3.2.0"
+  },
+  "scripts": {
+    "build": "electron-builder build --publish never"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "build": {
+    "appId": "com.firmachain.station",
+    "productName": "Firma Station",
+    "copyright": "Copyright © 2021 FirmaChain",
+    "asar": true,
+    "asarUnpack": "**\\*.{node,dll}",
+    "files": [
+      "public/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "mac": {
+      "category": "public.app-category.financial",
+      "target": {
+        "target": "dmg",
+        "arch": "universal"
+      },
+      "icon": "./assets/firmachain.ico"
+    },
+    "dmg": {
+      "title": "Firma Station",
+      "window": {
+        "width": 540,
+        "height": 370
+      },
+      "icon": "./assets/firmachain.ico"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "./assets/firmachain.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "./assets/firmachain.ico",
+      "createDesktopShortcut": true
+    }
+  }
+}
