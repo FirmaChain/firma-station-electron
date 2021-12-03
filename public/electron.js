@@ -2,8 +2,6 @@ const { app, BrowserWindow, shell } = require("electron");
 const electron = require("electron");
 const path = require("path");
 
-const { targetURL } = require("./config");
-
 electron.app.setPath("userData", path.join(electron.app.getPath("home"), ".firma-station"));
 
 function initialize() {
@@ -30,7 +28,7 @@ function initialize() {
     };
     mainWindow = new BrowserWindow(windowOptions);
     mainWindow.setMenu(null);
-    mainWindow.loadURL(targetURL);
+    mainWindow.loadURL("https://station-colosseum.firmachain.dev");
 
     mainWindow.once("ready-to-show", () => {
       mainWindow.show();
