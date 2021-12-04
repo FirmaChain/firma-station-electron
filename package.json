@@ -1,6 +1,6 @@
 {
   "name": "firma-station-electron",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "ISC",
   "homepage": "./",
   "description": "A desktop application to interact with Firma Chain.",
@@ -32,7 +32,9 @@
     "appId": "com.firmachain.station",
     "productName": "Firma Station",
     "copyright": "Copyright © 2021 FirmaChain",
+    "artifactName": "${productName}-${os}-${arch}-${version}.${ext}",
     "asar": true,
+    "extends": null,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
       "public/**/*",
@@ -46,7 +48,6 @@
         "deb"
       ],
       "category": "Development",
-      "artifactName": "${productName}-${version}.${ext}",
       "icon": "build/icon.icns"
     },
     "mac": {

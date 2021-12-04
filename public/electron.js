@@ -4,13 +4,16 @@ const path = require("path");
 
 electron.app.setPath("userData", path.join(electron.app.getPath("home"), ".firma-station"));
 
+const goalWidth = 1600;
+
 function initialize() {
   function createWindow() {
     const size = electron.screen.getPrimaryDisplay().workAreaSize;
     const originWidth = size.width;
-    const width = originWidth > 1080 ? parseInt(1080 + (originWidth - 1080) * 0.5) : originWidth;
+    const width = originWidth > goalWidth ? goalWidth : originWidth;
     const height = parseInt(width / (1920 / 1080));
 
+    console.log(size);
     const windowOptions = {
       minWidth: width,
       minHeight: height,
@@ -26,17 +29,24 @@ function initialize() {
       },
       resizable: true,
     };
+
     mainWindow = new BrowserWindow(windowOptions);
     mainWindow.setMenu(null);
     mainWindow.loadURL("https://station-colosseum.firmachain.dev");
 
     mainWindow.once("ready-to-show", () => {
       mainWindow.show();
+      mainWindow.webContents.setZoomFactor(mainWindow.getSize()[0] / goalWidth);
+    });
+
+    mainWindow.on("resize", () => {
+      mainWindow.webContents.setZoomFactor(mainWindow.getSize()[0] / goalWidth);
     });
 
     mainWindow.on("closed", () => {
       mainWindow = null;
     });
+
     mainWindow.on("will-resize", (event) => {
       event.preventDefault();
     });
