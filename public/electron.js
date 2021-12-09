@@ -33,8 +33,7 @@ function initialize() {
 
     mainWindow = new BrowserWindow(windowOptions);
     mainWindow.setMenu(null);
-    // mainWindow.loadURL("https://station-colosseum.firmachain.dev");
-    mainWindow.loadURL("http://localhost:3000");
+    mainWindow.loadURL("https://station-colosseum.firmachain.dev");
 
     mainWindow.once("ready-to-show", () => {
       mainWindow.show();
