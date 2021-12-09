@@ -1,9 +1,10 @@
-const { app, BrowserWindow, shell } = require("electron");
+const { app, BrowserWindow, shell, ipcMain } = require("electron");
 const electron = require("electron");
 const path = require("path");
 
 electron.app.setPath("userData", path.join(electron.app.getPath("home"), ".firma-station"));
 
+const version = "1.0.2";
 const offset = 16;
 const goalWidth = 1500 + offset;
 
@@ -62,6 +63,10 @@ function initialize() {
         shell.openExternal(url);
       }
     });
+  });
+
+  ipcMain.on("version", (event, arg) => {
+    event.returnValue = version;
   });
 }
 
