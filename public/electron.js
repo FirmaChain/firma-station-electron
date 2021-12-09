@@ -38,6 +38,9 @@ function initialize() {
     mainWindow.once("ready-to-show", () => {
       mainWindow.show();
       mainWindow.webContents.setZoomFactor(mainWindow.getSize()[0] / goalWidth);
+      mainWindow.webContents.on("did-finish-load", () => {
+        mainWindow.webContents.send("isElectron", true);
+      });
     });
 
     mainWindow.on("resize", () => {
