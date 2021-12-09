@@ -46,13 +46,6 @@ function initialize() {
     mainWindow.on("closed", () => {
       mainWindow = null;
     });
-
-    mainWindow.on("will-resize", (event) => {
-      setTimeout(function () {
-        var size = mainWindow.getSize();
-        mainWindow.setSize(size[0], parseInt((size[0] * 9) / 16));
-      }, 0);
-    });
   }
 
   app.on("ready", createWindow);
