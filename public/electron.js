@@ -5,7 +5,7 @@ const path = require("path");
 electron.app.setPath("userData", path.join(electron.app.getPath("home"), ".firma-station"));
 
 const offset = 16;
-const goalWidth = 1600 + offset;
+const goalWidth = 1500 + offset;
 
 function initialize() {
   function createWindow() {
