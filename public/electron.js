@@ -4,7 +4,8 @@ const path = require("path");
 
 electron.app.setPath("userData", path.join(electron.app.getPath("home"), ".firma-station"));
 
-const goalWidth = 1600;
+const offset = 16;
+const goalWidth = 1600 + offset;
 
 function initialize() {
   function createWindow() {
@@ -13,7 +14,6 @@ function initialize() {
     const width = originWidth > goalWidth ? goalWidth : originWidth;
     const height = parseInt(width / (1920 / 1080));
 
-    console.log(size);
     const windowOptions = {
       minWidth: width,
       minHeight: height,
@@ -48,7 +48,10 @@ function initialize() {
     });
 
     mainWindow.on("will-resize", (event) => {
-      event.preventDefault();
+      setTimeout(function () {
+        var size = mainWindow.getSize();
+        mainWindow.setSize(size[0], parseInt((size[0] * 9) / 16));
+      }, 0);
     });
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "firma-station-electron",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "ISC",
   "homepage": "./",
   "description": "A desktop application to interact with Firma Chain.",
