@@ -12,7 +12,7 @@ function initialize() {
   function createWindow() {
     const size = electron.screen.getPrimaryDisplay().workAreaSize;
     const originWidth = size.width;
-    const width = originWidth > goalWidth ? goalWidth : originWidth;
+    const width = originWidth > goalWidth ? goalWidth : originWidth - 100;
     const height = parseInt(width / (1920 / 1080));
 
     const windowOptions = {
@@ -33,7 +33,8 @@ function initialize() {
 
     mainWindow = new BrowserWindow(windowOptions);
     mainWindow.setMenu(null);
-    mainWindow.loadURL("https://station-colosseum.firmachain.dev");
+    // mainWindow.loadURL("https://station-colosseum.firmachain.dev");
+    mainWindow.loadURL("http://localhost:3000");
 
     mainWindow.once("ready-to-show", () => {
       mainWindow.show();
