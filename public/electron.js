@@ -39,7 +39,6 @@ function initialize() {
     mainWindow = new BrowserWindow(windowOptions);
     mainWindow.setMenu(null);
     mainWindow.loadURL("https://station-colosseum.firmachain.dev");
-    mainWindow.webContents.openDevTools();
 
     mainWindow.once("ready-to-show", () => {
       mainWindow.webContents.setZoomFactor(mainWindow.getSize()[0] / goalWidth);
@@ -95,7 +94,6 @@ function initialize() {
   });
 
   ipcMain.on("ledger-sign", async (event, arg) => {
-    console.log("LEDGER SIGN");
     let message = await ledgerWallet.sign(arg["message"]);
     event.returnValue = message;
   });
