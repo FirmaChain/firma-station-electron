@@ -1,12 +1,16 @@
 const { app, BrowserWindow, shell, ipcMain } = require("electron");
 const electron = require("electron");
 const path = require("path");
+const TransportHID = require("@ledgerhq/hw-transport-node-hid").default;
+const { FirmaWebLedgerWallet } = require("@firmachain/firma-js-ledger");
 
 electron.app.setPath("userData", path.join(electron.app.getPath("home"), ".firma-station"));
 
-const version = "1.0.2";
+const version = "1.0.3";
 const offset = 16;
-const goalWidth = 1500 + offset;
+const goalWidth = 1600 + offset;
+
+let ledgerWallet = new FirmaWebLedgerWallet(TransportHID);
 
 function initialize() {
   function createWindow() {
@@ -21,6 +25,7 @@ function initialize() {
       width: width,
       height: height,
       title: app.getName(),
+      show: false,
       webPreferences: {
         nodeIntegration: false,
         enableRemoteModule: false,
@@ -36,8 +41,9 @@ function initialize() {
     mainWindow.loadURL("https://station-colosseum.firmachain.dev");
 
     mainWindow.once("ready-to-show", () => {
-      mainWindow.show();
       mainWindow.webContents.setZoomFactor(mainWindow.getSize()[0] / goalWidth);
+      mainWindow.show();
+
       mainWindow.webContents.on("did-finish-load", () => {
         mainWindow.webContents.send("isElectron", true);
       });
@@ -70,6 +76,27 @@ function initialize() {
 
   ipcMain.on("version", (event, arg) => {
     event.returnValue = version;
+  });
+
+  ipcMain.on("ledger-showAddressOnDevice", async (event, arg) => {
+    await ledgerWallet.showAddressOnDevice();
+    event.returnValue = "";
+  });
+
+  ipcMain.on("ledger-getAddress", async (event, arg) => {
+    console.log("TEST");
+    let address = await ledgerWallet.getAddress();
+    event.returnValue = address;
+  });
+
+  ipcMain.on("ledger-sign", async (event, arg) => {
+    let message = await ledgerWallet.sign(arg["message"]);
+    event.returnValue = message;
+  });
+
+  ipcMain.on("ledger-getPublicKey", async (event, arg) => {
+    let message = await ledgerWallet.getPublicKey();
+    event.returnValue = message;
   });
 }
 

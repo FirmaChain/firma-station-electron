@@ -1,6 +1,6 @@
 {
   "name": "firma-station-electron",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "ISC",
   "homepage": "./",
   "description": "A desktop application to interact with Firma Chain.",
@@ -11,6 +11,8 @@
     "electron-builder": "^22.14.5"
   },
   "dependencies": {
+    "@firmachain/firma-js-ledger": "^0.0.2",
+    "@ledgerhq/hw-transport-node-hid": "^6.20.0",
     "electron-debug": "^3.2.0"
   },
   "scripts": {
