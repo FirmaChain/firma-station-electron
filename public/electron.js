@@ -39,6 +39,7 @@ function initialize() {
     mainWindow = new BrowserWindow(windowOptions);
     mainWindow.setMenu(null);
     mainWindow.loadURL("https://station-colosseum.firmachain.dev");
+    mainWindow.webContents.openDevTools();
 
     mainWindow.once("ready-to-show", () => {
       mainWindow.webContents.setZoomFactor(mainWindow.getSize()[0] / goalWidth);
@@ -83,13 +84,18 @@ function initialize() {
     event.returnValue = "";
   });
 
+  ipcMain.on("ledger-getAddressAndPublicKey", async (event, arg) => {
+    let data = await ledgerWallet.getAddressAndPublicKey();
+    event.returnValue = data;
+  });
+
   ipcMain.on("ledger-getAddress", async (event, arg) => {
-    console.log("TEST");
     let address = await ledgerWallet.getAddress();
     event.returnValue = address;
   });
 
   ipcMain.on("ledger-sign", async (event, arg) => {
+    console.log("LEDGER SIGN");
     let message = await ledgerWallet.sign(arg["message"]);
     event.returnValue = message;
   });
