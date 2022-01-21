@@ -3,6 +3,7 @@ const electron = require("electron");
 const path = require("path");
 const TransportHID = require("@ledgerhq/hw-transport-node-hid").default;
 const { FirmaWebLedgerWallet } = require("@firmachain/firma-js-ledger");
+const { URL } = require(path.resolve(__dirname, "config.js"));
 
 electron.app.setPath("userData", path.join(electron.app.getPath("home"), ".firma-station"));
 
@@ -38,7 +39,7 @@ function initialize() {
 
     mainWindow = new BrowserWindow(windowOptions);
     mainWindow.setMenu(null);
-    mainWindow.loadURL("https://station-colosseum.firmachain.dev");
+    mainWindow.loadURL(URL);
 
     mainWindow.once("ready-to-show", () => {
       mainWindow.webContents.setZoomFactor(mainWindow.getSize()[0] / goalWidth);
