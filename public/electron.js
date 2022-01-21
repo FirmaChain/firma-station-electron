@@ -7,7 +7,7 @@ const { URL } = require(path.resolve(__dirname, "config.js"));
 
 electron.app.setPath("userData", path.join(electron.app.getPath("home"), ".firma-station"));
 
-const version = "1.0.3";
+const version = "1.0.4";
 const offset = 16;
 const goalWidth = 1600 + offset;
 
