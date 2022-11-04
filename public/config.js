@@ -1,3 +1,3 @@
 module.exports = {
-  URL: "https://station.firmachain.io",
+  URL: 'https://station.firmachain.io',
 };
