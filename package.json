@@ -3,8 +3,8 @@
   "version": "1.0.6",
   "license": "ISC",
   "homepage": "./",
-  "description": "A desktop application to interact with Firma Chain.",
-  "author": "Firma <developer@firmachain.org> (https://firmachain.org)",
+  "description": "A desktop application to interact with FIRMACHAIN.",
+  "author": "FIRMACHAIN <developer@firmachain.org> (https://firmachain.org)",
   "main": "public/electron.js",
   "devDependencies": {
     "electron": "^17.4.11",
@@ -55,8 +55,11 @@
     "mac": {
       "category": "public.app-category.financial",
       "target": {
-        "target": "dmg",
-        "arch": "universal"
+        "target": "default",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
       },
       "icon": "build/icon.icns"
     },
