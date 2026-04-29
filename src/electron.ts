@@ -1,13 +1,16 @@
 import { app, BrowserWindow, shell, ipcMain, screen } from 'electron';
+import TransportHID from '@ledgerhq/hw-transport-node-hid';
+import { FirmaCosmosLedgerWallet } from '@firmachain/firma-js';
 import path from 'path';
 import { URL } from './config';
 
 app.setPath('userData', path.join(app.getPath('home'), '.firma-station'));
 
-const version = '1.0.6';
+const version = '1.1.0-beta.1';
 const offset = 16;
 const goalWidth = 1600 + offset;
 
+const ledgerWallet = new FirmaCosmosLedgerWallet(TransportHID);
 let mainWindow: BrowserWindow | null = null;
 
 function initialize(): void {
@@ -71,6 +74,56 @@ function initialize(): void {
 
   ipcMain.on('version', (event) => {
     event.returnValue = version;
+  });
+
+  ipcMain.on('ledger-showAddressOnDevice', async (event) => {
+    try {
+      await ledgerWallet.showAddressOnDevice();
+      event.returnValue = '';
+    } catch (err) {
+      console.error('[ledger-showAddressOnDevice] error:', err);
+      event.returnValue = '';
+    }
+  });
+
+  ipcMain.on('ledger-getAddressAndPublicKey', async (event) => {
+    try {
+      const data = await ledgerWallet.getAddressAndPublicKey();
+      event.returnValue = data;
+    } catch (err) {
+      console.error('[ledger-getAddressAndPublicKey] error:', err);
+      event.returnValue = null;
+    }
+  });
+
+  ipcMain.on('ledger-getAddress', async (event) => {
+    try {
+      const address = await ledgerWallet.getAddress();
+      event.returnValue = address;
+    } catch (err) {
+      console.error('[ledger-getAddress] error:', err);
+      event.returnValue = null;
+    }
+  });
+
+  ipcMain.on('ledger-sign', async (event, arg) => {
+    try {
+      const message = await ledgerWallet.sign(arg['message'], arg['txtype']);
+      event.returnValue = message;
+    } catch (err) {
+      console.error('[ledger-sign] error:', err);
+      event.returnValue = null;
+    }
+  });
+
+  ipcMain.on('ledger-getPublicKey', async (event) => {
+    try {
+      const message = await ledgerWallet.getPublicKey();
+      event.returnValue = message;
+    } catch (err) {
+      console.error('[ledger-getPublicKey] error:', err);
+      event.returnValue = null;
+    }
   });
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "firma-station-electron",
-  "version": "1.0.6",
+  "version": "1.1.0-beta.1",
   "license": "ISC",
   "homepage": "./",
   "description": "A desktop application to interact with FIRMACHAIN.",
@@ -13,6 +13,8 @@
     "typescript": "^5.4.0"
   },
   "dependencies": {
+    "@firmachain/firma-js": "github:firmachain/firma-js#v0.4.2",
+    "@ledgerhq/hw-transport-node-hid": "^6.33.1",
     "electron-debug": "^3.2.0"
   },
   "scripts": {
