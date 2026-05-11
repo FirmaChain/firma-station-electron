@@ -23,7 +23,7 @@
     "set:mainnet": "node scripts/set-network.js mainnet",
     "set:testnet": "node scripts/set-network.js testnet",
     "build:mainnet": "npm run set:mainnet && tsc && electron-builder build --publish never",
-    "build:testnet": "npm run set:testnet && tsc && electron-builder build --publish never --config.appId=com.firmachain.station.testnet --config.artifactName='${productName}-testnet-${os}-${arch}-${version}.${ext}'",
+    "build:testnet": "npm run set:testnet && tsc && electron-builder build --publish never --config.appId=com.firmachain.station.testnet --config.directories.output=dist-testnet",
     "build": "npm run build:mainnet",
     "build:all": "npm run build:mainnet && npm run build:testnet && npm run set:mainnet"
   },
@@ -43,7 +43,7 @@
     "appId": "com.firmachain.station",
     "productName": "Firma Station",
     "copyright": "Copyright © 2021 FirmaChain",
-    "artifactName": "${productName}-${os}-${arch}-${version}.${ext}",
+    "artifactName": "${productName}-${os}-${arch}.${ext}",
     "asar": true,
     "extends": null,
     "asarUnpack": "**\\*.{node,dll}",
