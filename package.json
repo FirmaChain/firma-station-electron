@@ -6,8 +6,11 @@
   "description": "A desktop application to interact with FIRMACHAIN.",
   "author": "FIRMACHAIN <developer@firmachain.org> (https://firmachain.org)",
   "main": "public/electron.js",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^24.0.0",
     "electron": "^42.0.1",
     "electron-builder": "^26.9.1",
     "typescript": "^5.4.0"
