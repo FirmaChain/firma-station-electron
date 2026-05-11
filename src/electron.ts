@@ -2,9 +2,10 @@ import { app, BrowserWindow, shell, ipcMain, screen } from 'electron';
 import TransportHID from '@ledgerhq/hw-transport-node-hid';
 import { FirmaCosmosLedgerWallet } from '@firmachain/firma-js';
 import path from 'path';
-import { URL } from './config';
+import { NETWORK, URL } from './config';
 
-app.setPath('userData', path.join(app.getPath('home'), '.firma-station'));
+const userDataDir = NETWORK === 'testnet' ? '.firma-station-testnet' : '.firma-station';
+app.setPath('userData', path.join(app.getPath('home'), userDataDir));
 
 const version = '1.2.1';
 const offset = 16;

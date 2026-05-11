@@ -20,7 +20,12 @@
   "scripts": {
     "compile": "tsc",
     "dev": "tsc && electron public/electron.js",
-    "build": "tsc && electron-builder build --publish never"
+    "set:mainnet": "node scripts/set-network.js mainnet",
+    "set:testnet": "node scripts/set-network.js testnet",
+    "build:mainnet": "npm run set:mainnet && tsc && electron-builder build --publish never",
+    "build:testnet": "npm run set:testnet && tsc && electron-builder build --publish never --config.appId=com.firmachain.station.testnet --config.artifactName='${productName}-testnet-${os}-${arch}-${version}.${ext}'",
+    "build": "npm run build:mainnet",
+    "build:all": "npm run build:mainnet && npm run build:testnet && npm run set:mainnet"
   },
   "browserslist": {
     "production": [
