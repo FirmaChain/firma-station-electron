@@ -6,7 +6,7 @@ import { URL } from './config';
 
 app.setPath('userData', path.join(app.getPath('home'), '.firma-station'));
 
-const version = '1.1.0-beta.1';
+const version = '1.2.1';
 const offset = 16;
 const goalWidth = 1600 + offset;
 
