@@ -1,5 +1,7 @@
 /node_modules
 /dist
+/public/*.js
+/public/*.js.map
 .DS_Store
 .env
 npm-debug.log*
