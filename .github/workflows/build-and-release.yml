@@ -33,9 +33,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.os }} (${{ matrix.network }})
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: 'npm'
@@ -65,7 +65,7 @@ jobs:
         run: npm run build:${{ matrix.network }}
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: arn:aws:iam::681301424914:role/prod-firmachain-deploy-station-electron
           aws-region: ap-southeast-1
